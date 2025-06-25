@@ -1,36 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 
-export default function HackModal() {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    const openModal = (e) => {
-      if (e.ctrlKey && e.key === 'h') setShow(true);
-    };
-    window.addEventListener('keydown', openModal);
-    return () => window.removeEventListener('keydown', openModal);
-  }, []);
-
-  if (!show) return null;
+const HackModal = () => {
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        className="bg-white p-8 rounded-xl max-w-md text-black shadow-lg"
+    <>
+      <button
+        onClick={() => setOpen(true)}
+        className="fixed bottom-4 right-4 bg-purple-600 text-white px-4 py-2 rounded-lg shadow-lg z-50"
       >
-        <h2 className="text-2xl font-bold mb-2">🤖 Accessing Neural Core...</h2>
-        <p className="text-sm mb-4">Welcome to Sarang's AI Brain. Here's what he's built:</p>
-        <ul className="list-disc pl-6">
-          <li>Mood-based Song Recommender</li>
-          <li>AI Resume Ranker</li>
-          <li>Gesture Pong (CV Project)</li>
-          <li>Diabetes Prediction Bot (SVM)</li>
-        </ul>
-        <button onClick={() => setShow(false)} className="mt-4 px-4 py-2 bg-black text-white rounded">Close</button>
-      </motion.div>
-    </div>
+        Hack Me 🧠
+      </button>
+
+      {open && (
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+          <div className="bg-white text-black p-6 rounded-lg max-w-md shadow-2xl relative">
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute top-2 right-3 text-xl text-gray-600 hover:text-red-500"
+            >
+              ×
+            </button>
+            <h2 className="text-2xl font-bold mb-2">Sarang’s Secret Sauce 💀</h2>
+            <p className="text-sm">
+              Brooo… This whole portfolio is powered by Tailwind, Framer Motion, and ✨ chaos.
+            </p>
+          </div>
+        </div>
+      )}
+    </>
   );
-}
+};
+
+export default HackModal;

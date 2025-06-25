@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
-export default function CustomCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
+const CustomCursor = () => {
   useEffect(() => {
-    const move = (e) => setPosition({ x: e.clientX, y: e.clientY });
+    const cursor = document.createElement('div');
+    cursor.className =
+      'fixed w-4 h-4 bg-purple-500 rounded-full pointer-events-none z-[1000] transition-transform duration-75';
+    document.body.appendChild(cursor);
+
+    const move = (e) => {
+      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    };
+
     window.addEventListener('mousemove', move);
-    return () => window.removeEventListener('mousemove', move);
+    return () => {
+      window.removeEventListener('mousemove', move);
+      document.body.removeChild(cursor);
+    };
   }, []);
 
-  return (
-    <div
-      className="pointer-events-none fixed top-0 left-0 z-[9999] w-8 h-8"
-      style={{
-        transform: `translate(${position.x}px, ${position.y}px)`
-      }}
-    >
-      <div className="text-xl animate-pulse">🔥</div>
-    </div>
-  );
-}
+  return null;
+};
+
+export default CustomCursor;

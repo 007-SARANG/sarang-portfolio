@@ -2,12 +2,12 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const messages = [
-  "You're boring af... but at least you visited this site 💀",
-  "If you were in your place, you would also be there for help 🙂",
-  "Sarang helped me crack my resume bot in one go 🤖🔥",
-  "Hdd h... this portfolio is too OP!",
-  "Bruhh this guy just flexed AI/ML like it's a toy 😂",
-  "Mein to chill hu... Exams gaye bhaad mein 😎"
+  "Sarang’s projects make other portfolios look like HTML homework.",
+  "This guy uses AI like it’s built into his DNA 💻🧠",
+  "Even ChatGPT would say: 'Bro, calm down with the flex' 😂",
+  "His UI? Smooth. His ML? Smart. His vibe? Unmatched 😎",
+  "Companies: 'We need 10 years of experience' — Sarang: 'Done in semester 2 💀'",
+  "Not just a dev — he’s a whole OS. Welcome to SarangOS 👑"
 ];
 
 export default function FunTestimonials() {
@@ -16,13 +16,13 @@ export default function FunTestimonials() {
   React.useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % messages.length);
-    }, 3000);
+    }, 3500);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="bg-gradient-to-tr from-black via-gray-900 to-black text-white py-20 px-4 flex flex-col items-center">
-      <h2 className="text-3xl font-bold mb-8">What people (and bots) say 🗣️</h2>
+      <h2 className="text-3xl font-bold mb-8">What People Say 💬</h2>
       <div className="relative h-24 w-full max-w-xl text-center">
         <AnimatePresence mode="wait">
           <motion.p

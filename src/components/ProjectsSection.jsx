@@ -1,47 +1,56 @@
 import React from 'react';
-import Tilt from 'react-parallax-tilt';
+import { motion } from 'framer-motion';
 
 const projects = [
   {
-    title: 'Resume Ranker 🤖',
-    desc: 'Ranks resumes using AI + NLP. Gives feedback instantly.',
-    tech: ['Python', 'NLP', 'Flask'],
+    title: 'WhatsApp Chat Summarizer',
+    description: 'Summarizes group chats using Python and NLP.',
     link: '#',
-    code: '#'
   },
   {
-    title: 'Mood Recommender 🎧',
-    desc: 'Suggests songs based on your mood using Spotify API.',
-    tech: ['React', 'API', 'JS'],
+    title: 'Diabetes Prediction Bot',
+    description: 'ML bot using SVM to predict diabetes from user inputs.',
     link: '#',
-    code: '#'
   },
   {
-    title: 'Gesture Pong 👆🏽',
-    desc: 'Play Pong with your fingers using OpenCV + MediaPipe.',
-    tech: ['OpenCV', 'JS', 'Computer Vision'],
+    title: 'SarangBot (Human Style)',
+    description: 'A casual chatbot that talks like Sarang — chaos guaranteed.',
     link: '#',
-    code: '#'
+  },
+  {
+    title: 'Gesture Controlled Pong',
+    description: 'Built with OpenCV, plays pong using hand movement.',
+    link: '#',
   },
 ];
 
 export default function ProjectsSection() {
   return (
-    <div className="bg-black text-white py-20 px-6">
-      <h2 className="text-3xl font-bold text-center mb-10">Projects</h2>
-      <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory px-4 scrollbar-hide">
-        {projects.map((proj, idx) => (
-          <Tilt key={idx} className="min-w-[300px] snap-center bg-gray-800 rounded-xl p-6 shadow-lg">
-            <h3 className="text-xl font-bold text-blue-400 mb-2">{proj.title}</h3>
-            <p className="text-sm text-gray-300 mb-4">{proj.desc}</p>
-            <div className="text-xs text-gray-400 mb-3">Tech: {proj.tech.join(', ')}</div>
-            <div className="flex gap-3">
-              <a href={proj.link} target="_blank" rel="noopener noreferrer" className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Live</a>
-              <a href={proj.code} target="_blank" rel="noopener noreferrer" className="bg-gray-700 text-white px-3 py-1 rounded hover:bg-gray-600">Code</a>
-            </div>
-          </Tilt>
+    <motion.div
+      className="max-w-5xl mx-auto px-6"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <h2 className="text-3xl font-bold text-purple-400 mb-6 border-b border-purple-700 pb-2">Projects</h2>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((proj, i) => (
+          <motion.a
+            key={i}
+            href={proj.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-black/50 border border-purple-700 rounded-xl p-4 hover:scale-[1.03] transition-all duration-300 hover:shadow-purple-500/40 hover:shadow-md cursor-pointer"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+          >
+            <h3 className="text-xl font-semibold text-white">{proj.title}</h3>
+            <p className="text-sm text-gray-300 mt-2">{proj.description}</p>
+          </motion.a>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

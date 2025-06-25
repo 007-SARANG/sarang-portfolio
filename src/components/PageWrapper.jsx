@@ -1,22 +1,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const variants = {
-  hidden: { opacity: 0, y: 20 },
-  enter: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -20 },
+const wrapperVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 80,
+      damping: 14,
+      duration: 0.5,
+    },
+  },
 };
 
-export default function PageWrapper({ children }) {
+export default function PageWrapper({ children, className = '' }) {
   return (
-    <motion.div
+    <motion.section
+      className={`w-full px-6 py-10 ${className}`}
+      variants={wrapperVariants}
       initial="hidden"
-      animate="enter"
-      exit="exit"
-      variants={variants}
-      transition={{ duration: 0.5, ease: 'easeInOut' }}
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
     >
       {children}
-    </motion.div>
+    </motion.section>
   );
 }
