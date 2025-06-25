@@ -10,21 +10,3 @@ export default function Home() {
     </>
   );
 }
-
-
-// About.jsx
-import React from 'react';
-import AboutSection from '../components/AboutSection';
-
-export default function About() {
-  return <AboutSection />;
-}
-
-
-// Projects.jsx
-import React from 'react';
-import ProjectsSection from '../components/ProjectsSection';
-
-export default function Projects() {
-  return <ProjectsSection />;
-}
