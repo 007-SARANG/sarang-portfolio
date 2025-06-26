@@ -8,24 +8,26 @@ import AboutSection from './components/AboutSection';
 import ProjectsSection from './components/ProjectsSection';
 import SkillsSection from './components/SkillsSection';
 import FunTestimonials from './components/FunTestimonials';
+import LayoutWrapper from './components/LayoutWrapper';
 
 export default function App() {
-  // ⬇️ This ensures we reset scroll once BootIntro is gone
+  // Reset scroll after boot intro ends
   useEffect(() => {
     const timeout = setTimeout(() => {
       window.scrollTo(0, 0);
-    }, 4000); // same as BootIntro hide delay
+    }, 4000);
     return () => clearTimeout(timeout);
   }, []);
 
   return (
     <>
       <BootIntro />
-      <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white">
+      <LayoutWrapper>
         <Sidebar />
         <CustomCursor />
         <HackModal />
-        <main className="px-4 sm:px-8 md:px-16 space-y-20">
+
+        <main className="ml-20 px-4 sm:px-8 md:px-16 space-y-20">
           <section id="home">
             <ProfileCard />
           </section>
@@ -42,7 +44,7 @@ export default function App() {
             <FunTestimonials />
           </section>
         </main>
-      </div>
+      </LayoutWrapper>
     </>
   );
 }
