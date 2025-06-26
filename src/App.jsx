@@ -44,6 +44,10 @@ export default function App() {
             <FunTestimonials />
           </section>
         </main>
+        <footer className="text-center text-sm text-gray-500 py-6">
+         Made with <span className="text-red-500">❤️</span> by <span className="font-semibold text-white">Sarang</span>
+        </footer>
+
       </LayoutWrapper>
     </>
   );
